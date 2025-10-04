@@ -1,0 +1,16 @@
+MTXPayload                   = get_custom_object
+MTXPayload        		     = MTXPayload.MTXPayload
+MTXPayload.name              = "esc"
+MTXPayload.description       = "escalate to root"
+MTXPayload.author            = "akaB0B"
+
+// This is the run() function that run post exploitation
+// remote_object: The object that return after post exploitation <shell|computer|file>
+// local_shell:   Your computer get_shell object
+// options:       Options setted with "set <option> <value>" command
+MTXPayload.run = function(remote_object, local_shell)
+		remote_object = get_shell
+		object_type = typeof(remote_object)
+		if object_type != "shell" then return print_error("This payload works with shell sessions only")
+		print_good("Hello " + options["STRING"] + " i'm a remote shell and my ip is: " + remote_object.host_computer.public_ip)
+end function
